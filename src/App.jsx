@@ -1,5 +1,13 @@
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
 function App() {
-  <div>headjer</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route></Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
