@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useBooks from "./UseBooks";
+import { Link } from "react-router-dom";
 export default function Classic({ id }) {
   const { books } = useBooks("Classic", 0, 12);
   const [startIndex, setStartIndex] = useState(0);
@@ -31,18 +32,24 @@ export default function Classic({ id }) {
       </button>
       <div className="classic-cart">
         {visibleBooks.map((book, i) => (
-          <div key={i} className="classic-each-cart">
-            <img
-              src={book.cover_i}
-              alt={book.title}
-              onError={(e) => (e.target.src = "/t5.jpg")}
-            />
-            <div className="classic-each-cart-text">
-              <h4>{book.title}</h4>
-              <p>{book.author_name ? book.author_name : "Unknown"}</p>
-              <span>{(Math.random() * 200 + 50).toFixed(2)}$</span>
+          <Link
+            to={`/book/${book.id}`}
+            key={book.id}
+            style={{ textDecoration: "none" }}
+          >
+            <div key={i} className="classic-each-cart">
+              <img
+                src={book.cover_i}
+                alt={book.title}
+                onError={(e) => (e.target.src = "/t5.jpg")}
+              />
+              <div className="classic-each-cart-text">
+                <h4>{book.title}</h4>
+                <p>{book.author_name ? book.author_name : "Unknown"}</p>
+                <span>{book.price} $</span>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <button className="nextSection" onClick={handleNext}>

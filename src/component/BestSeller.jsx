@@ -1,7 +1,10 @@
 import { useState } from "react";
-
-export default function BestSeller({ books, id }) {
+import { Link } from "react-router-dom";
+import useBooks from "./UseBooks";
+export default function BestSeller({ id }) {
   const [startIndex, setStartIndex] = useState(0);
+  const { books } = useBooks("best-seller", 0, 12);
+
   const visibleCount = 4;
   function handleNext() {
     if (startIndex + visibleCount < books.length) {
@@ -37,18 +40,24 @@ export default function BestSeller({ books, id }) {
       </button>
       <div className="bestSeller-cart">
         {visibleBooks.map((book, i) => (
-          <div key={i} className="bestSeller-each-cart">
-            <img
-              src={book.cover_i}
-              alt={book.title}
-              onError={(e) => (e.target.src = "/t5.jpg")}
-            />
-            <div className="bestSeller-each-cart-text">
-              <h4>{book.title}</h4>
-              <p>{book.author_name ? book.author_name : "Unknown"}</p>
-              <span>{(Math.random() * 200 + 50).toFixed(2)}$</span>
+          <Link
+            to={`/book/${book.id}`}
+            key={book.id}
+            style={{ textDecoration: "none" }}
+          >
+            <div className="bestSeller-each-cart">
+              <img
+                src={book.cover_i}
+                alt={book.title}
+                onError={(e) => (e.target.src = "/t5.jpg")}
+              />
+              <div className="bestSeller-each-cart-text">
+                <h4>{book.title}</h4>
+                <p>{book.author_name ? book.author_name : "Unknown"}</p>
+                <span>{book.price} $</span>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <button className="nextSection" onClick={handleNext}>

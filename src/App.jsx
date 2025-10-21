@@ -1,12 +1,14 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import BookDetails from "./pages/BookDetails";
 import { useState } from "react";
 import useBooks from "./component/UseBooks";
+
 const images = ["/pic1.jpg", "/pic2.jpg", "/pic3.jpg"];
 
 function App() {
   const [current, setCurent] = useState(0);
-  const { books, isLoading, error } = useBooks("best-seller", 0, 12);
+  const { books, isLoading, error } = useBooks();
   function goToSlide(current) {
     setCurent(current);
   }
@@ -29,7 +31,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          index
+          path="/"
           element={
             <HomePage
               current={current}
@@ -43,6 +45,7 @@ function App() {
             />
           }
         />
+        <Route path="/book/:id" element={<BookDetails />} />
       </Routes>
     </BrowserRouter>
   );

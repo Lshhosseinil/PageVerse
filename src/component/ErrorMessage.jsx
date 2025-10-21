@@ -5,7 +5,7 @@ export default function ErrorMessage({ message, top }) {
 
   return (
     <p className="error" style={errorStyle}>
-      <span>⛔</span>
+      {/* <span>⛔</span> */}
       {message}
     </p>
   );

@@ -229,14 +229,16 @@
 }
 .bestSeller-each-cart-text h4 {
   margin-top: 15px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.736);
 }
 .bestSeller-each-cart-text p {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 12px;
   color: #090937;
 }
 .bestSeller-each-cart-text span {
-  margin-top: 85px;
+  margin-top: 70px;
   color: rgba(98, 81, 221, 1);
 }
 
@@ -312,14 +314,16 @@
 }
 .classic-each-cart-text h4 {
   margin-top: 15px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.736);
 }
 .classic-each-cart-text p {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 12px;
   color: #090937;
 }
 .classic-each-cart-text span {
-  margin-top: 85px;
+  margin-top: 70px;
   color: rgba(98, 81, 221, 1);
 }
 /* ////////////Children */
@@ -397,14 +401,16 @@
 }
 .children-each-cart-text h4 {
   margin-top: 15px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.736);
 }
 .children-each-cart-text p {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 12px;
   color: #090937;
 }
 .children-each-cart-text span {
-  margin-top: 85px;
+  margin-top: 70px;
   color: rgba(98, 81, 221, 1);
 }
 /* /////Next Section */
