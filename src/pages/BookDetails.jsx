@@ -32,6 +32,16 @@ function BookDetails() {
   }, [numericId]);
   const handleFavorite = () => {
     setIsFavorite((prev) => !prev);
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const exists = favorites.find((item) => item.id === book.id);
+
+    if (!exists) {
+      favorites.push(book);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      alert("Added to favorites!");
+    } else {
+      alert("Already in favorites");
+    }
   };
 
   if (isLoading) return <Loader top={400} />;

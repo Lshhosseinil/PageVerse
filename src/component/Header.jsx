@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import supabase from "../supabaseClient";
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     const term = searchTerm.trim();
     const categories = ["best-seller", "Classic", "Children"];
     e.preventDefault();
     if (categories.includes(term)) {
       navigate(`/category/${term}`);
       return;
+    }
+    const { data, error } = await supabase
+      .from("books")
+      .select("id,title,author_name")
+      .or(`title.ilike.%${term}%,author_name.ilike.%${term}%`);
+    if (data && data.length > 0) {
+      navigate(`/book/${data[0].id}`);
+    } else {
+      alert("Book not found");
     }
   }
   return (
@@ -34,7 +44,8 @@ function Header() {
         <button>
           <i className="bi bi-person"></i>
         </button>
-        <button>
+
+        <button onClick={() => navigate("/favarite")}>
           <i className="bi bi-heart"></i>
         </button>
         <button>
