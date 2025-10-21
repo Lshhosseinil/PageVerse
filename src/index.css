@@ -526,6 +526,7 @@
   font-size: 13px;
   color: #777;
 }
+
 /* ////////////Responsive */
 @media screen and (max-width: 1030px) {
   .search {

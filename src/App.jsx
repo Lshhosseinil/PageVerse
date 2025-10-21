@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import BookDetails from "./pages/BookDetails";
+import CategoryPage from "./pages/CategoryPage";
 import { useState } from "react";
 import useBooks from "./component/UseBooks";
 
@@ -46,6 +47,7 @@ function App() {
           }
         />
         <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/category/:name" element={<CategoryPage />} />
       </Routes>
     </BrowserRouter>
   );
