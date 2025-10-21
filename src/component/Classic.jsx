@@ -1,10 +1,14 @@
 import { useState } from "react";
 import useBooks from "./UseBooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export default function Classic({ id }) {
   const { books } = useBooks("Classic", 0, 12);
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 4;
+  const navigate = useNavigate();
+  const handleViewAll = () => {
+    navigate("/category/Classic");
+  };
   function handleNext() {
     if (startIndex + visibleCount < books.length) {
       setStartIndex((s) => s + 1);
@@ -25,7 +29,7 @@ export default function Classic({ id }) {
     <section className="classic" style={{ marginTop: "50px" }} id={id}>
       <div className="classic-title">
         <h2>Classic</h2>
-        <button>View All</button>
+        <button onClick={handleViewAll}>View All</button>
       </div>
       <button className="prevSection" onClick={handlePrev}>
         <i className="bi bi-chevron-compact-left"></i>

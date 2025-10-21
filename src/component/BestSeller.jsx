@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useBooks from "./UseBooks";
 export default function BestSeller({ id }) {
   const [startIndex, setStartIndex] = useState(0);
   const { books } = useBooks("best-seller", 0, 12);
 
   const visibleCount = 4;
+  const navigate = useNavigate();
+  const handleViewAll = () => {
+    navigate("/category/best-seller");
+  };
   function handleNext() {
     if (startIndex + visibleCount < books.length) {
       setStartIndex((s) => s + 1);
@@ -33,7 +37,7 @@ export default function BestSeller({ id }) {
     >
       <div className="bestSeller-title">
         <h2>Best Seller</h2>
-        <button>View All</button>
+        <button onClick={handleViewAll}>View All</button>
       </div>
       <button className="prevSection" onClick={handlePrev}>
         <i className="bi bi-chevron-compact-left"></i>

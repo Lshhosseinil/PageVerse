@@ -65,13 +65,18 @@
 ///////////////////////////////////////
 import { useState } from "react";
 import useBooks from "./UseBooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Children({ id }) {
   const { books } = useBooks("Children", 0, 12);
   console.log(books.length);
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 4;
+  const navigate = useNavigate();
+  const handleViewAll = () => {
+    navigate("/category/Children");
+  };
+
   function handleNext() {
     if (startIndex + visibleCount < books.length) {
       setStartIndex((s) => s + 1);
@@ -92,7 +97,7 @@ export default function Children({ id }) {
     <section className="children" style={{ marginTop: "50px" }} id={id}>
       <div className="children-title">
         <h2>Children</h2>
-        <button>View All</button>
+        <button onClick={handleViewAll}>View All</button>
       </div>
       <button className="prevSection" onClick={handlePrev}>
         <i className="bi bi-chevron-compact-left"></i>
