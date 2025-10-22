@@ -4,6 +4,7 @@ import BookDetails from "./pages/BookDetails";
 import CategoryPage from "./pages/CategoryPage";
 import FavritePage from "./pages/FavritePage";
 import ShoppingCart from "./pages/ShoppingCart";
+import AuthPage from "./pages/AuthPage";
 import { useState } from "react";
 import useBooks from "./component/UseBooks";
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/category/:name" element={<CategoryPage />} />
         <Route path="/favarite" element={<FavritePage />} />
         <Route path="/shoppingCart" element={<ShoppingCart />} />
+        <Route path="/Auth" element={<AuthPage />} />
       </Routes>
     </BrowserRouter>
   );

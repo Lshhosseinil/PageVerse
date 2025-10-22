@@ -3,9 +3,9 @@ export default function Footer({ onScrool, onClassic, onChildren, onHome }) {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h2 className="footer-logo">📚LibraryApp</h2>
+          <h2 className="footer-logo">📚PageVerse</h2>
           <p style={{ lineHeight: 1.8 }}>
-            Discover your next favorite book with 📚LibraryApp — your go-to
+            Discover your next favorite book with 📚PageVerse — your go-to
             library for timeless classics and bestsellers.
           </p>
         </div>
@@ -30,12 +30,12 @@ export default function Footer({ onScrool, onClassic, onChildren, onHome }) {
           <h4>Contact</h4>
           <p style={{ marginTop: "10px" }}>📍 Shiraz, Iran</p>
           <p style={{ marginTop: "10px" }}>+98 912 000 0000</p>
-          <p style={{ marginTop: "10px" }}>info@LibraryApp.com</p>
+          <p style={{ marginTop: "10px" }}>info@PageVerse.com</p>
         </div>
       </div>
       <div className="footer-bottom">
         © {new Date().getFullYear()}
-        📚LibraryApp. All rights reserved
+        📚PageVerse. All rights reserved
       </div>
     </footer>
   );

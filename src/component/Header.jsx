@@ -41,7 +41,7 @@ function Header() {
       </form>
 
       <div className="icons">
-        <button>
+        <button onClick={() => navigate("/Auth")}>
           <i className="bi bi-person"></i>
         </button>
 
