@@ -43,6 +43,17 @@ function BookDetails() {
       alert("Already in favorites");
     }
   };
+  function handleShopping() {
+    const shopping = JSON.parse(localStorage.getItem("AddList")) || [];
+    const exist = shopping.find((item) => item.id === book.id);
+    if (!exist) {
+      shopping.push(book);
+      localStorage.setItem("AddList", JSON.stringify(shopping));
+      alert("Added to List!");
+    } else {
+      alert("Already in List");
+    }
+  }
 
   if (isLoading) return <Loader top={400} />;
   if (error) return <ErrorMessage top={400} message={error} />;
@@ -70,8 +81,8 @@ function BookDetails() {
           </div>
           <h2>Summary</h2>
           <p className="summary">{book.description}</p>
-          <button className={styles.buy_button}>
-            <span>{book.price} $</span> Buy Now
+          <button className={styles.buy_button} onClick={handleShopping}>
+            Add to List
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-const images = ["/pic1.jpg", "/pic2.jpg", "/pic3.jpg"];
+const images = ["/pic2.jpg", "/pic1.jpg", "/pic3.jpg"];
 
 export default function Sliders({
   current,

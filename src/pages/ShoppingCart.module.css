@@ -38,7 +38,8 @@
   width: 100%;
   height: auto;
   border-radius: 6px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.8rem;
+  margin-top: 22px;
 }
 
 .book_card h3 {
@@ -68,29 +69,39 @@
   background-color: #2a4378;
 }
 .remove_button {
-  margin-top: 0.5rem;
+  position: absolute;
   background-color: #e53935;
   color: white;
   border: none;
-  padding: 0.4rem 0.7rem;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 0.2rem 0.2rem;
+  /* height: 1.8rem; */
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin-top: -5px;
+
+  /* aspect-ratio: 2; */
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .remove_button:hover {
   background-color: #c62828;
 }
 .Add_cart {
-  margin-top: 0.6rem;
-  margin-left: 2px;
-  background-color: rgb(87, 169, 87);
-  color: white;
+  background-color: #f57c00;
+  padding: 0.75rem 1.5rem;
   border: none;
-  padding: 0.4rem 0.7rem;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 6px;
+  /* font-size: 1.5rem; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   -webkit-transition: background-color 0.3s ease;
@@ -99,5 +110,5 @@
   -o-transition: background-color 0.3s ease;
 }
 .Add_cart:hover {
-  background-color: rgb(58, 112, 58);
+  background-color: #e65100;
 }

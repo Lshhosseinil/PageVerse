@@ -48,7 +48,7 @@ function Header() {
         <button onClick={() => navigate("/favarite")}>
           <i className="bi bi-heart"></i>
         </button>
-        <button>
+        <button onClick={() => navigate("/shoppingCart")}>
           <i className="bi bi-cart3"></i>
         </button>
       </div>

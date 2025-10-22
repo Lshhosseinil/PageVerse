@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import BookDetails from "./pages/BookDetails";
 import CategoryPage from "./pages/CategoryPage";
 import FavritePage from "./pages/FavritePage";
+import ShoppingCart from "./pages/ShoppingCart";
 import { useState } from "react";
 import useBooks from "./component/UseBooks";
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/category/:name" element={<CategoryPage />} />
         <Route path="/favarite" element={<FavritePage />} />
+        <Route path="/shoppingCart" element={<ShoppingCart />} />
       </Routes>
     </BrowserRouter>
   );

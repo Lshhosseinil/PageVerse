@@ -14,6 +14,7 @@ function FavritePage() {
     localStorage.setItem("favorites", JSON.stringify(updated));
     setFavorites(updated);
   };
+
   return (
     <div className={styles.favorites_page}>
       <h2>Your Favorite Books</h2>
@@ -23,13 +24,32 @@ function FavritePage() {
             <img src={book.cover_i} alt={book.title} />
             <h3>{book.title}</h3>
             <p>{book.author_name}</p>
-            <Link to={`/book/${book.id}`}>View Details</Link>
-            <button
+            <p>
+              <Link to={`/book/${book.id}`}>View Details</Link>
+            </p>
+            <span
               onClick={() => handleRemove(book.id)}
               className={styles.remove_button}
             >
               Remove
-            </button>
+            </span>
+            <span
+              className={styles.Add_cart}
+              onClick={() => {
+                const shopping =
+                  JSON.parse(localStorage.getItem("AddList")) || [];
+                const exist = shopping.find((item) => item.id === book.id);
+                if (!exist) {
+                  shopping.push(book);
+                  localStorage.setItem("AddList", JSON.stringify(shopping));
+                  alert("Added to List!");
+                } else {
+                  alert("Already in List");
+                }
+              }}
+            >
+              <i className="bi bi-cart3"></i>
+            </span>
           </div>
         ))}
       </div>
