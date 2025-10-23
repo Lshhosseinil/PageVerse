@@ -23,6 +23,11 @@ function Header() {
       alert("Book not found");
     }
   }
+  async function handleLogOut() {
+    await supabase.auth.signOut();
+    alert("You Log Out");
+    navigate("/");
+  }
   return (
     <div className="header">
       <div className="logo">
@@ -50,6 +55,9 @@ function Header() {
         </button>
         <button onClick={() => navigate("/shoppingCart")}>
           <i className="bi bi-cart3"></i>
+        </button>
+        <button onClick={handleLogOut}>
+          <i className="bi bi-box-arrow-right"></i>
         </button>
       </div>
     </div>

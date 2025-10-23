@@ -11,7 +11,6 @@
   top: 0;
   left: 0;
   right: 0;
-  /* background-color: blueviolet; */
   position: fixed;
   box-shadow: 0 4px 15px rgba(18, 3, 3, 0.026);
   z-index: 1000;
@@ -26,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 800px;
+  width: 750px;
   padding: 0px 16px;
   background-color: #f4f4ff;
   border-radius: 10px;
@@ -39,9 +38,8 @@
 .search input {
   border: none;
   outline: none;
-  /*font-weight: bold;
-  */
-  width: 800px;
+
+  width: 750px;
   height: 50px;
   color: rgba(9, 9, 55, 0.749);
   font-size: 18px;
@@ -55,7 +53,6 @@
   color: rgba(9, 9, 55, 0.4);
   font-size: 17px;
   margin-right: 10px;
-  /* padding-left: 10px; */
 }
 .icons button {
   color: rgba(9, 9, 55, 0.667);
@@ -553,7 +550,7 @@
 /* ////////////Responsive */
 @media screen and (max-width: 1030px) {
   .search {
-    width: 500px;
+    width: 400px;
   }
   .search input {
     width: 500px;
@@ -602,16 +599,19 @@
     width: 300px;
     font-size: 18px;
   }
+  .logo img {
+    display: none;
+  }
 }
 @media screen and (max-width: 540px) {
   .header {
     justify-content: space-evenly;
   }
   .search {
-    width: 200px;
+    width: 150px;
   }
   .search input {
-    width: 150px;
+    width: 100px;
     font-size: 18px;
   }
   .logo img {
@@ -619,6 +619,7 @@
   }
   .icons button {
     height: 45px;
+    font-size: 12px;
   }
   .bestSeller-cart {
     grid-template-columns: auto;

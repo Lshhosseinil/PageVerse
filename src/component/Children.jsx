@@ -68,7 +68,7 @@ import useBooks from "./UseBooks";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Children({ id }) {
-  const { books } = useBooks("Children", 0, 12);
+  const { books } = useBooks("Children", 0, 3);
   console.log(books.length);
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 4;
@@ -77,33 +77,33 @@ export default function Children({ id }) {
     navigate("/category/Children");
   };
 
-  function handleNext() {
-    if (startIndex + visibleCount < books.length) {
-      setStartIndex((s) => s + 1);
-    } else {
-      setStartIndex(0);
-    }
-  }
-  function handlePrev() {
-    if (startIndex > 0) {
-      setStartIndex((s) => s - 1);
-    } else if (startIndex === 0) {
-      setStartIndex(books.length - 4);
-    }
-  }
-  const visibleBooks = books.slice(startIndex, startIndex + visibleCount);
-  console.log(visibleBooks);
+  // function handleNext() {
+  //   if (startIndex + visibleCount < books.length) {
+  //     setStartIndex((s) => s + 1);
+  //   } else {
+  //     setStartIndex(0);
+  //   }
+  // }
+  // function handlePrev() {
+  //   if (startIndex > 0) {
+  //     setStartIndex((s) => s - 1);
+  //   } else if (startIndex === 0) {
+  //     setStartIndex(books.length - 4);
+  //   }
+  // }
+  // const visibleBooks = books.slice(startIndex, startIndex + visibleCount);
+  // console.log(visibleBooks);
   return (
     <section className="children" style={{ marginTop: "50px" }} id={id}>
       <div className="children-title">
         <h2>Children</h2>
         <button onClick={handleViewAll}>View All</button>
       </div>
-      <button className="prevSection" onClick={handlePrev}>
+      {/* <button className="prevSection" onClick={handlePrev}>
         <i className="bi bi-chevron-compact-left"></i>
-      </button>
+      </button> */}
       <div className="children-cart">
-        {visibleBooks.map((book, i) => (
+        {books.map((book, i) => (
           <Link
             to={`/book/${book.id}`}
             key={book.id}
@@ -124,9 +124,9 @@ export default function Children({ id }) {
           </Link>
         ))}
       </div>
-      <button className="nextSection" onClick={handleNext}>
+      {/* <button className="nextSection" onClick={handleNext}>
         <i className="bi bi-chevron-compact-right"></i>
-      </button>
+      </button> */}
     </section>
   );
 }
