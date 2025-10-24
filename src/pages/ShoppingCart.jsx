@@ -1,16 +1,55 @@
 import { useEffect, useState } from "react";
 import styles from "./ShoppingCart.module.css";
+import supabase from "../supabaseClient";
 import { Link } from "react-router-dom";
 function ShoppingCart() {
   const [list, setList] = useState([]);
-  useEffect(function () {
-    const stored = JSON.parse(localStorage.getItem("AddList")) || [];
-    setList(stored);
+  async function fetchCart() {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return alert("Please login first");
+
+    const { data, error } = await supabase
+      .from("shopping-cart")
+      .select("book_id, quantity, books(title, author_name, cover_i, price)")
+      .eq("user_id", user.id);
+
+    if (error) {
+      console.error("Error fetching cart:", error.message);
+    } else {
+      console.log(data);
+      const formatted = data.map((item) => ({
+        id: item.book_id,
+        title: item.books.title,
+        author_name: item.books.author_name,
+        cover_i: item.books.cover_i,
+        price: item.books.price,
+        quantity: item.quantity,
+      }));
+      setList(formatted);
+    }
+  }
+  useEffect(() => {
+    fetchCart();
   }, []);
-  const handleRemove = (id) => {
-    const updated = list.filter((book) => book.id !== id);
-    localStorage.setItem("AddList", JSON.stringify(updated));
-    setList(updated);
+  const handleRemove = async (bookId) => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return alert("Please login first");
+
+    const { error } = await supabase
+      .from("shopping-cart")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("book_id", bookId);
+
+    if (error) {
+      alert("Error removing from cart");
+    } else {
+      fetchCart();
+    }
   };
 
   return (

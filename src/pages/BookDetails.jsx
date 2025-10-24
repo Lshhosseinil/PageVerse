@@ -30,28 +30,50 @@ function BookDetails() {
 
     fetchBook();
   }, [numericId]);
-  const handleFavorite = () => {
-    setIsFavorite((prev) => !prev);
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const exists = favorites.find((item) => item.id === book.id);
-
-    if (!exists) {
-      favorites.push(book);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      alert("Added to favorites!");
-    } else {
+  const handleFavorite = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return alert("please login first");
+    const { data: exist } = await supabase
+      .from("favarites")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("book_id", book.id)
+      .single();
+    if (exist) {
       alert("Already in favorites");
+    } else {
+      const { error } = await supabase
+        .from("favarites")
+        .insert([{ user_id: user.id, book_id: book.id }]);
+      if (error) alert(error.message);
+      else {
+        setIsFavorite(true);
+        alert("Added to favorites!");
+      }
     }
   };
-  function handleShopping() {
-    const shopping = JSON.parse(localStorage.getItem("AddList")) || [];
-    const exist = shopping.find((item) => item.id === book.id);
-    if (!exist) {
-      shopping.push(book);
-      localStorage.setItem("AddList", JSON.stringify(shopping));
-      alert("Added to List!");
+  async function handleShopping() {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return alert("please login first");
+    const { data: exists } = await supabase
+      .from("shopping-cart")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("book_id", book.id)
+      .single();
+    if (exists) {
+      alert("Already in cart");
     } else {
-      alert("Already in List");
+      const { error } = await supabase
+        .from("shopping-cart")
+        .insert([{ user_id: user.id, book_id: book.id, quantity: 1 }]);
+
+      if (error) alert("Error adding to cart");
+      else alert("Added to cart!");
     }
   }
 

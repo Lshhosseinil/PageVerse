@@ -24,9 +24,13 @@ function Header() {
     }
   }
   async function handleLogOut() {
-    await supabase.auth.signOut();
-    alert("You Log Out");
-    navigate("/");
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("You Log Out");
+      navigate("/");
+    }
   }
   return (
     <div className="header">

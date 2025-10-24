@@ -18,6 +18,10 @@ function AuthPage() {
     if (result.error) {
       alert(result.error.message);
     } else {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      console.log("User Id: ", user?.id);
       alert(`Welcom ${email}`);
       navigate("/");
     }
