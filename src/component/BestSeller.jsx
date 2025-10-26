@@ -10,38 +10,14 @@ export default function BestSeller({ id }) {
   const handleViewAll = () => {
     navigate("/category/best-seller");
   };
-  // function handleNext() {
-  //   if (startIndex + visibleCount < books.length) {
-  //     setStartIndex((s) => s + 1);
-  //   } else {
-  //     setStartIndex(0);
-  //   }
-  // }
-  // function handlePrev() {
-  //   if (startIndex > 0) {
-  //     setStartIndex((s) => s - 1);
-  //   } else if (startIndex === 0) {
-  //     setStartIndex(books.length - 4);
-  //   }
-  // }
-  // const visibleBooks = books.slice(startIndex, startIndex + visibleCount);
+
   return (
-    <section
-      className="bestSeller"
-      // style={{
-      //   backgroundColor: "purple",
-      //   bottom: "200px",
-      //   position: "relative",
-      // }}
-      id={id}
-    >
+    <section className="bestSeller" id={id}>
       <div className="bestSeller-title">
         <h2>Best Seller</h2>
         <button onClick={handleViewAll}>View All</button>
       </div>
-      {/* <button className="prevSection" onClick={handlePrev}>
-        <i className="bi bi-chevron-compact-left"></i>
-      </button> */}
+
       <div className="bestSeller-cart">
         {books.map((book, i) => (
           <Link
@@ -64,9 +40,6 @@ export default function BestSeller({ id }) {
           </Link>
         ))}
       </div>
-      {/* <button className="nextSection" onClick={handleNext}>
-        <i className="bi bi-chevron-compact-right"></i>
-      </button> */}
     </section>
   );
 }

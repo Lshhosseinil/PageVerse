@@ -17,7 +17,6 @@ export default function useBooks(query, min, max) {
             .range(min, max);
           if (error) throw new Error(error);
           setBooks(data);
-          console.log(data);
         } catch (err) {
           setError(err.message);
         } finally {

@@ -7,6 +7,8 @@ import Children from "../component/Children";
 import Classic from "../component/Classic";
 import ErrorMessage from "../component/ErrorMessage";
 import Footer from "../component/Footer";
+import supabase from "../supabaseClient";
+import { useEffect, useState } from "react";
 
 function HomePage({
   current,
@@ -18,6 +20,41 @@ function HomePage({
   error,
   books,
 }) {
+  const [lowStockMessage, setLowStockMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+  useEffect(function () {
+    async function checkLowStock() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      console.log("user:", user);
+      if (!user) return;
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+      console.log("profile:", profile.role);
+      if (profile?.role !== "admin") {
+        setLoading(false);
+        return;
+      }
+      const { data: lowStockBooks } = await supabase
+        .from("books")
+        .select("title, stock")
+        .lt("stock", 5);
+      if (lowStockBooks.length > 0) {
+        const titles = lowStockBooks.map((b) => `"${b.title}"`).join(", ");
+        setLowStockMessage(
+          `⚠️ Low stock alert: The following books have less than 5 copies available: ${titles}`
+        );
+      }
+
+      setLoading(false);
+    }
+
+    checkLowStock();
+  }, []);
   function handleScrool(e) {
     const bestSeller = document.getElementById("bestseller");
 
@@ -38,6 +75,22 @@ function HomePage({
   return (
     <div>
       <Header />
+      {!loading && lowStockMessage && (
+        <div
+          style={{
+            backgroundColor: "#f8d7da",
+            color: "#721c24",
+            padding: "1rem",
+            borderRadius: "8px",
+            marginTop: "150px ",
+            textAlign: "center",
+            border: "1px solid #f5c6cb",
+            fontWeight: "bold",
+          }}
+        >
+          {lowStockMessage}
+        </div>
+      )}
       <Sliders
         current={current}
         setCurent={setCurent}
@@ -46,6 +99,7 @@ function HomePage({
         onHandleNext={onHandleNext}
         id={"slider"}
       />
+
       <Main>
         <>
           {isLoading && <Loader />}
@@ -73,15 +127,3 @@ function HomePage({
 }
 
 export default HomePage;
-//  current = { current };
-//  setCurent = { setCurent };
-//  onGoToSlide = { goToSlide };
-//  onHandlePrev = { handlePrev };
-//  onHandleNext = { handleNext };
-//  isLoading = { isLoading };
-//  error = { error };
-//  books = { books };
-//  onScrool = { handleScrool };
-//  onClassic = { handleScroolClassic };
-//  onChildren = { handleScroolChildren };
-//  onHome = { handleScroolHeader };

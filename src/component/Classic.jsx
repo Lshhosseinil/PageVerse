@@ -9,31 +9,14 @@ export default function Classic({ id }) {
   const handleViewAll = () => {
     navigate("/category/Classic");
   };
-  // function handleNext() {
-  //   if (startIndex + visibleCount < books.length) {
-  //     setStartIndex((s) => s + 1);
-  //   } else {
-  //     setStartIndex(0);
-  //   }
-  // }
-  // function handlePrev() {
-  //   if (startIndex > 0) {
-  //     setStartIndex((s) => s - 1);
-  //   } else if (startIndex === 0) {
-  //     setStartIndex(books.length - 4);
-  //   }
-  // }
-  // const visibleBooks = books.slice(startIndex, startIndex + visibleCount);
-  // console.log(visibleBooks);
+
   return (
     <section className="classic" style={{ marginTop: "50px" }} id={id}>
       <div className="classic-title">
         <h2>Classic</h2>
         <button onClick={handleViewAll}>View All</button>
       </div>
-      {/* <button className="prevSection" onClick={handlePrev}>
-        <i className="bi bi-chevron-compact-left"></i>
-      </button> */}
+
       <div className="classic-cart">
         {books.map((book, i) => (
           <Link
@@ -56,9 +39,6 @@ export default function Classic({ id }) {
           </Link>
         ))}
       </div>
-      {/* <button className="nextSection" onClick={handleNext}>
-        <i className="bi bi-chevron-compact-right"></i>
-      </button> */}
     </section>
   );
 }

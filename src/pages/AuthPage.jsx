@@ -21,8 +21,23 @@ function AuthPage() {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      console.log("User Id: ", user?.id);
       alert(`Welcom ${email}`);
+      const { data: profileExists } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (!profileExists) {
+        console.log("user:", user);
+        console.log("user.email:", user.email);
+        await supabase.from("profiles").insert({
+          id: user.id,
+          email: user.email,
+          role: "user",
+        });
+      }
+
       navigate("/");
     }
   }

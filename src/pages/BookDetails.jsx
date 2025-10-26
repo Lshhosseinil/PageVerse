@@ -54,17 +54,40 @@ function BookDetails() {
       }
     }
   };
-  async function handleShopping() {
+  async function handleShopping(bookId) {
     const {
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) return alert("please login first");
+    const { data: bookData, error: bookError } = await supabase
+      .from("books")
+      .select("stock")
+      .eq("id", bookId)
+      .single();
+    if (bookError || !bookData) return alert("book not found");
+    const oldStock = bookData.stock;
+
+    const newStock = oldStock - 1;
+    if (newStock < 0) return alert("Out of Stock");
+
+    const { error: updateError } = await supabase
+      .from("books")
+      .update({ stock: newStock })
+      .eq("id", bookId);
+    if (updateError) {
+      return alert(updateError.message);
+    }
+
+    if (newStock < oldStock) {
+      console.log("📉 موجودی کتاب کم شد:", oldStock, "→", newStock);
+    }
+
     const { data: exists } = await supabase
       .from("shopping-cart")
       .select("*")
       .eq("user_id", user.id)
       .eq("book_id", book.id)
-      .single();
+      .maybeSingle();
     if (exists) {
       alert("Already in cart");
     } else {
@@ -74,6 +97,13 @@ function BookDetails() {
 
       if (error) alert("Error adding to cart");
       else alert("Added to cart!");
+    }
+    if (newStock <= 5) {
+      await supabase.from("notifications").insert({
+        type: "low_stock",
+        message: `the stock of the book with ID ${bookId} has reached ${newStock}`,
+        for_role: "admin",
+      });
     }
   }
 
@@ -103,7 +133,10 @@ function BookDetails() {
           </div>
           <h2>Summary</h2>
           <p className="summary">{book.description}</p>
-          <button className={styles.buy_button} onClick={handleShopping}>
+          <button
+            className={styles.buy_button}
+            onClick={() => handleShopping(book.id)}
+          >
             Add to List
           </button>
         </div>

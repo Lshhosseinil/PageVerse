@@ -18,7 +18,6 @@ function ShoppingCart() {
     if (error) {
       console.error("Error fetching cart:", error.message);
     } else {
-      console.log(data);
       const formatted = data.map((item) => ({
         id: item.book_id,
         title: item.books.title,
