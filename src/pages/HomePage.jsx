@@ -72,8 +72,22 @@ function HomePage({
     const slider = document.getElementById("slider");
     slider.scrollIntoView({ behavior: "smooth" });
   }
+  // const [isFakeDark, setIsFakeDark] = useState(false);
+
+  // useEffect(
+  //   function () {
+  //     document.documentElement.classList.toggle("fake-dark-mode");
+  //   },
+  //   [isFakeDark]
+  // );
   return (
     <div>
+      {/* <button
+        onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+        className="btn-fake-dark-mode"
+      >
+        {isFakeDark ? "☀️" : "🌙"}
+      </button> */}
       <Header />
       {!loading && lowStockMessage && (
         <div
