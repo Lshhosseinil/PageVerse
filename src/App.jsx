@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/PageVerse">
       <Routes>
         <Route
           path="/"
