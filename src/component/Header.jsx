@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient";
+import logo from "../assets/digital-library.png";
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,7 +36,7 @@ function Header() {
   return (
     <div className="header">
       <div className="logo">
-        <img src="/digital-library.png" alt="logo" />
+        <img src={logo} alt="logo" />
       </div>
 
       <form className="search" onSubmit={handleSubmit}>

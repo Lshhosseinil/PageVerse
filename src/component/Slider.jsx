@@ -1,4 +1,9 @@
-const images = ["/pic2.jpg", "/pic1.jpg", "/pic3.jpg"];
+// const images = ["./assets/pic2.jpg", "/pic1.jpg", "/pic3.jpg"];
+const images = [
+  new URL("../assets/pic1.jpg", import.meta.url).href,
+  new URL("../assets/pic2.jpg", import.meta.url).href,
+  new URL("../assets/pic3.jpg", import.meta.url).href,
+];
 
 export default function Sliders({
   current,
