@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from "./ShoppingCart.module.css";
 import supabase from "../supabaseClient";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function ShoppingCart() {
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
   async function fetchCart() {
     const {
       data: { user },
@@ -72,6 +73,7 @@ function ShoppingCart() {
             <p
               className={styles.Add_cart}
               style={{ color: "white", fontSize: "17px" }}
+              onClick={() => navigate("/checkout")}
             >
               {book.price} $ Buy Now
             </p>

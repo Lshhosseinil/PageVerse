@@ -7,7 +7,7 @@ import ShoppingCart from "./pages/ShoppingCart";
 import AuthPage from "./pages/AuthPage";
 import { useState } from "react";
 import useBooks from "./component/UseBooks";
-
+import Checkout from "./pages/Checkout";
 const images = ["/pic1.jpg", "/pic2.jpg", "/pic3.jpg"];
 
 function App() {
@@ -54,6 +54,7 @@ function App() {
         <Route path="/favarite" element={<FavritePage />} />
         <Route path="/shoppingCart" element={<ShoppingCart />} />
         <Route path="/Auth" element={<AuthPage />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

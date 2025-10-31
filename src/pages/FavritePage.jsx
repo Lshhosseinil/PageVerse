@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import supabase from "../supabaseClient";
 import styles from "./FavritePage.module.css";
 
 function FavritePage() {
+  const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
   async function fetchFavorites() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) return alert("Please login first");
-
+    if (!user) {
+      alert("please login first");
+      return navigate("/Auth");
+    }
     const { data, error } = await supabase
       .from("favarites")
       .select("book_id, books(title, author_name, cover_i)")
@@ -37,8 +40,10 @@ function FavritePage() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) return alert("Please login first");
-
+    if (!user) {
+      alert("please login first");
+      return navigate("/Auth");
+    }
     const { error } = await supabase
       .from("favarites")
       .delete()

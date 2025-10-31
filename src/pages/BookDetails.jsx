@@ -34,7 +34,10 @@ function BookDetails() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) return alert("please login first");
+    if (!user) {
+      alert("please login first");
+      return navigate("/Auth");
+    }
     const { data: exist } = await supabase
       .from("favarites")
       .select("*")
@@ -58,7 +61,10 @@ function BookDetails() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (!user) return alert("please login first");
+    if (!user) {
+      alert("please login first");
+      return navigate("/Auth");
+    }
     const { data: bookData, error: bookError } = await supabase
       .from("books")
       .select("stock")
