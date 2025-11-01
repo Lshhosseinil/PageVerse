@@ -14,6 +14,17 @@ function Header() {
       navigate(`/category/${term}`);
       return;
     }
+    ////////////
+    if (term === ">100" || term === "expensive") {
+      navigate("/expensive-books");
+      return;
+    }
+    ////////////////
+    if (term === "<100" || term === "cheap") {
+      navigate("/cheap-books");
+      return;
+    }
+    //////////////////
     const { data, error } = await supabase
       .from("books")
       .select("id,title,author_name")
