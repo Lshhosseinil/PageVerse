@@ -74,7 +74,7 @@ function BookDetails() {
     const oldStock = bookData.stock;
 
     const newStock = oldStock - 1;
-    if (newStock < 0) return alert("Out of Stock");
+    if (newStock <= 0) return alert("Out of Stock");
 
     const { error: updateError } = await supabase
       .from("books")

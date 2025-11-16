@@ -1,0 +1,142 @@
+.container {
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.input {
+  flex: 1 1 220px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.table th,
+.table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #444;
+}
+
+.table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+.table tr:hover {
+  background-color: #fdfdfd;
+}
+
+.table button {
+  margin-right: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.table button:first-child {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.table button:first-child:hover {
+  background-color: #27ae60;
+}
+
+.table button:last-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.table button:last-child:hover {
+  background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .table th,
+  .table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+  .deleteItem {
+    /* width: 50px; */
+    padding: 0 0 0 0;
+    margin-top: 5px !important;
+    text-align: center;
+  }
+}

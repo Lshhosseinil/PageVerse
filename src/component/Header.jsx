@@ -15,12 +15,12 @@ function Header() {
       return;
     }
     ////////////
-    if (term === ">100" || term === "expensive") {
+    if (term === "over $100" || term === "expensive") {
       navigate("/expensive-books");
       return;
     }
     ////////////////
-    if (term === "<100" || term === "cheap") {
+    if (term === "under $100" || term === "cheap") {
       navigate("/cheap-books");
       return;
     }
@@ -55,7 +55,7 @@ function Header() {
 
         <input
           type="text"
-          placeholder="Search "
+          placeholder="Search in titles,authors and categories ...  "
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
